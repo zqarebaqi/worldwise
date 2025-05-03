@@ -1,7 +1,7 @@
 import { BrowserRouter,Route,Routes,Navigate } from "react-router-dom";
 import Login from './pages/Login';
  import Homepage from "./pages/Homepage.jsx";
-import AppLayout from './pages/AppLayout'
+import AppLayout from './pages/AppLayout.jsx'
 import NotFound from './pages/NotFound';
 import Product from './pages/Product';
 import Pricing from './pages/Pricing';

@@ -9,7 +9,7 @@ const SideBar = () => {
             <AppNav />
             <Outlet/>
             <footer className={styles.footer}>
-                <p className='styles.copyright'>&copy; { new Date().getFullYear()} by worldWise Inc.</p>
+                <p className={styles.copyright}>&copy; { new Date().getFullYear()} by worldWise Inc.</p>
             </footer>
         </div>
     );

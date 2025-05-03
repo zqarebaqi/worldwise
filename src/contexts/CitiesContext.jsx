@@ -5,6 +5,7 @@ import { createContext } from 'react';
 
 const CitiesContext = createContext();
 const BASE_URL = "http://localhost:9000";
+// const BASE_URL = "/cities.json";
 
 const CitiesProvider = ({children}) => {
 
@@ -19,7 +20,7 @@ const CitiesProvider = ({children}) => {
         const res = await fetch(`${BASE_URL}/cities`)
         const data = await res.json()
         setCities(data)
-      } catch {
+      } catch{
         alert("there was an error loading data")
       } finally {
         setIsLoading(false)

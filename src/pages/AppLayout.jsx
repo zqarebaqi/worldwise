@@ -1,4 +1,4 @@
-import SideBar from '../components/SideBar';
+import SideBar from '../components/SideBar.jsx';
 import styles from './AppLayout.module.css'
 import Map from '../components/Map.jsx';
 const AppLayout = () => {

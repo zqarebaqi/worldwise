@@ -6,7 +6,8 @@ import Button from "./Button";
 import Message from './Message'
 import Spinner from './Spinner'
 import DatePicker from "react-datepicker";
-
+import { useCities } from "../contexts/CitiesContext";
+import { useNavigate } from "react-router-dom";
 const BASE_URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 export function convertToEmoji(countryCode) {
@@ -18,6 +19,7 @@ export function convertToEmoji(countryCode) {
 }
 
 function Form() {
+  const {createCity,isLoading}=useCities()
   const [lat, lng] = useUrlPosition();
   const [cityName, setCityName] = useState("");
   const [country, setCountry] = useState("");
@@ -26,7 +28,8 @@ function Form() {
   const [isLoadinGeocoding, setIsLoadingGeocoding] = useState(false);
   const[emoji,setEmoji]=useState("")
   const [geocodingError, setGeocodingError] = useState()
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     if (!lat && !lng) return;
     async function fetchCityData() {
@@ -50,10 +53,17 @@ function Form() {
   }, [lat,lng])
 
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
-     
-    
+     if(!cityName || !date) return
+    const newCity = {
+      cityName,
+      country,
+      emoji,
+      date,notes,position:{lat,lng }
+    }
+   await createCity(newCity)
+    navigate('/app/cities')
   }
 
   if(isLoadinGeocoding) return <Spinner/>
@@ -62,9 +72,9 @@ function Form() {
 if(geocodingError) return <Message message={geocodingError}/>
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={`${styles.form} ${isLoading ? styles.loading : ""}`} onSubmit={handleSubmit}>
       <div className={styles.row}>
-        <label htmlFor="cityName">City name</label>
+        <label for="cityName">City name</label>
         <input
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
@@ -74,20 +84,22 @@ if(geocodingError) return <Message message={geocodingError}/>
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="date">When did you go to {cityName}?</label>
+        <label for="date">When did you go to {cityName}?</label>
         {/* <input
           id="date"
           onChange={(e) => setDate(e.target.value)}
           value={date}
         /> */}
         <DatePicker
-          selected={date}
+          id="date"
+          selected={date} //instead of value={date}
           onChange={(date) => setDate(date)}
+          dateFormat="dd/MM/yyyy"
         />
       </div>
 
       <div className={styles.row}>
-        <label htmlFor="notes">Notes about your trip to {cityName}</label>
+        <label for="notes">Notes about your trip to {cityName}</label>
         <textarea
           id="notes"
           onChange={(e) => setNotes(e.target.value)}
@@ -96,9 +108,7 @@ if(geocodingError) return <Message message={geocodingError}/>
       </div>
 
       <div className={styles.buttons}>
-        <Button type="primary" >
-          Add
-        </Button>
+        <Button type="primary">Add</Button>
         <BackButton />
       </div>
     </form>

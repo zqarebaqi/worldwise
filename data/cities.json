@@ -37,18 +37,6 @@
       "id": "98443197"
     },
     {
-      "id": "f3ff",
-      "cityName": "Doha",
-      "country": "Qatar",
-      "emoji": "🇶🇦",
-      "date": "2025-05-04T19:43:58.835Z",
-      "notes": "",
-      "position": {
-        "lat": "25.27891314924265",
-        "lng": "51.52725219726563"
-      }
-    },
-    {
       "id": "6ac2",
       "cityName": "Tehran",
       "country": "Iran (Islamic Republic of)",
@@ -61,15 +49,15 @@
       }
     },
     {
-      "id": "ac0a",
-      "cityName": "Beyoglu",
-      "country": "Turkiye",
-      "emoji": "🇹🇷",
-      "date": "2025-05-04T19:44:37.463Z",
+      "id": "b7fc",
+      "cityName": "Elda",
+      "country": "Spain",
+      "emoji": "🇪🇸",
+      "date": "2025-05-04T23:04:43.319Z",
       "notes": "",
       "position": {
-        "lat": "41.030815128010516",
-        "lng": "28.97575378417969"
+        "lat": "38.464387089463905",
+        "lng": "-0.8349609375000001"
       }
     }
   ]

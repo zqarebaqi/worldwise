@@ -74,7 +74,7 @@ if(geocodingError) return <Message message={geocodingError}/>
   return (
     <form className={`${styles.form} ${isLoading ? styles.loading : ""}`} onSubmit={handleSubmit}>
       <div className={styles.row}>
-        <label for="cityName">City name</label>
+        <label htmlFor="cityName">City name</label>
         <input
           id="cityName"
           onChange={(e) => setCityName(e.target.value)}
@@ -84,7 +84,7 @@ if(geocodingError) return <Message message={geocodingError}/>
       </div>
 
       <div className={styles.row}>
-        <label for="date">When did you go to {cityName}?</label>
+        <label htmlFor="date">When did you go to {cityName}?</label>
         {/* <input
           id="date"
           onChange={(e) => setDate(e.target.value)}
@@ -99,7 +99,7 @@ if(geocodingError) return <Message message={geocodingError}/>
       </div>
 
       <div className={styles.row}>
-        <label for="notes">Notes about your trip to {cityName}</label>
+        <label htmlFor="notes">Notes about your trip to {cityName}</label>
         <textarea
           id="notes"
           onChange={(e) => setNotes(e.target.value)}
